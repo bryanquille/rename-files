@@ -133,7 +133,6 @@ ent3.grid(row=3,
 def rename_files():
     # Renaming files on a masive way
     directory = ent1.get()
-    # content = os.listdir(directory)
     new_name = ent2.get()
     file_extension = ent3.get()
     extension = "*" + ent3.get()

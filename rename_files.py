@@ -1,4 +1,5 @@
 # Libraries
+import glob
 import os
 from tkinter import *
 
@@ -129,19 +130,21 @@ ent3.grid(row=3,
           pady=10)
 
 # Function (Getting entries)
-def renameFiles():
+def rename_files():
     # Renaming files on a masive way
-    location = ent1.get()
-    content = os.listdir(location)
-    newName = ent2.get()
-    fileExtension = ent3.get()
+    directory = ent1.get()
+    # content = os.listdir(directory)
+    new_name = ent2.get()
+    file_extension = ent3.get()
+    extension = "*" + ent3.get()
+    content = glob.glob(directory + os.sep + extension)
     sequence = 1
     
     for i in content:
-        completeNewName = newName + "-" + str(sequence) + fileExtension
-        lastFile = os.path.join(location, i)  
-        newFile = os.path.join(location, completeNewName)
-        os.rename(lastFile, newFile)
+        complete_new_name = new_name + "-" + str(sequence) + file_extension
+        last_file = os.path.join(directory, i)  
+        new_file = os.path.join(directory, complete_new_name)
+        os.rename(last_file, new_file)
         sequence += 1
 
     lab5.configure(text="The files were rename correctly.")
@@ -153,7 +156,7 @@ btn = Button(win1,
              bg=yellowColor, 
              fg=blackColor, 
              font="Ubuntu", 
-             command=renameFiles)
+             command=rename_files)
 btn.grid(row=4, 
          column=1, 
          ipadx=5, 
